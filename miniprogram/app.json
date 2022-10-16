@@ -2,7 +2,8 @@
     "pages": [
         "pages/record/record",
         "pages/query/query",
-        "pages/rules/rules"
+        "pages/rules/rules",
+        "pages/createCollection/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

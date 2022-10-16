@@ -15,7 +15,7 @@
                     <view class="weui-label">金额:</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="请输入金额"/>
+                    <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="请输入金额" value="{{spend}}" bindinput="getSpendValue" />
                 </view>
             </view>
             <view class="weui-cell weui-cell_active">
@@ -23,9 +23,10 @@
                     <view class="weui-label">用途:</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="请输入花费内容"/>
+                    <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="请输入花费内容" value="{{purpose}}" bindinput="getPurposeValue" />
                 </view>
             </view>
+            <button type="primary" plain="true" bindtap="OnSubmit">提交</button>
 		</view>
 	</view>
 </view>

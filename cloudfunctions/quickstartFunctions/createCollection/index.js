@@ -10,37 +10,13 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   try {
     // 创建集合
-    await db.createCollection('sales');
-    await db.collection('sales').add({
+    await db.createCollection('diary');
+    await db.collection('diary').add({
       // data 字段表示需新增的 JSON 数据
       data: {
-        region: '华东',
-        city: '上海',
-        sales: 11
-      }
-    });
-    await db.collection('sales').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        region: '华东',
-        city: '南京',
-        sales: 11
-      }
-    });
-    await db.collection('sales').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        region: '华南',
-        city: '广州',
-        sales: 22
-      }
-    });
-    await db.collection('sales').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        region: '华南',
-        city: '深圳',
-        sales: 22
+        year: '2022',
+        bills: [{'date':'2022-10-16', 'spend':'1000', 'purpose':'衣服'}],
+        quota: { 'cur_year':'100000', 'last_year':'0', 'expect_next_year':'11000' }
       }
     });
     return {
