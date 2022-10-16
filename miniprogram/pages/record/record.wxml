@@ -1,0 +1,31 @@
+<page-meta root-font-size="system"/>
+<view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
+	<view class="page__bd" style="height: 100%;">
+		<view class="weui-tab">
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">日期:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <text>{{today}}</text>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">金额:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="请输入金额"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">用途:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="请输入花费内容"/>
+                </view>
+            </view>
+		</view>
+	</view>
+</view>

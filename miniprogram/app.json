@@ -1,0 +1,42 @@
+{
+    "pages": [
+        "pages/record/record",
+        "pages/query/query",
+        "pages/rules/rules"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#0068C4",
+        "navigationBarTitleText": "CC的神秘日志",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": true
+    },
+    "tabBar": {
+        "color": "#626567",
+        "selectedColor": "#2A8CE5",
+        "backgroundColor": "#FBFBFB",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/record/record",
+                "text": "",
+                "iconPath": "images/index.png",
+                "selectedIconPath": "images/index_focus.png"
+            },
+            {
+                "pagePath": "pages/query/query",
+                "text": "",
+                "iconPath": "images/discovery.png",
+                "selectedIconPath": "images/discovery_focus.png"
+            },
+            {
+                "pagePath": "pages/rules/rules",
+                "text": "",
+                "iconPath": "images/ring.png",
+                "selectedIconPath": "images/ring_focus.png"
+            }
+        ]
+    },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
