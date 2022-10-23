@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
     })
     .update({
         data: {
-            bills: _.push({'date':event.date, 'spend':event.spend, 'purpose':event.purpose})
+            bills: _.push({'date':event.date, 'spend':event.spend, 'purpose':event.purpose, 'claimed':event.claimed})
         }
     })
     .then((res) => {

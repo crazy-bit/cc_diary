@@ -70,6 +70,7 @@ Page({
             year: d.year,
             spend: d.spend,
             purpose: d.purpose,
+            claimed: false,
           }
         }).then((resp) => {
           wx.hideLoading();

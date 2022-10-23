@@ -1,7 +1,7 @@
 {
     "pages": [
         "pages/record/record",
-        "pages/query/query",
+        "pages/show/show",
         "pages/rules/rules",
         "pages/createCollection/index"
     ],
@@ -25,7 +25,7 @@
                 "selectedIconPath": "images/index_focus.png"
             },
             {
-                "pagePath": "pages/query/query",
+                "pagePath": "pages/show/show",
                 "text": "",
                 "iconPath": "images/discovery.png",
                 "selectedIconPath": "images/discovery_focus.png"

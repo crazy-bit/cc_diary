@@ -1,0 +1,32 @@
+<page-meta root-font-size="system"/>
+<view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
+	<view class="page__bd" style="height: 100%;">
+        <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+                <text>2022年度(额度:{{cur_quota}})</text>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+                <view>本年度剩余：{{left_quota}}元</view>
+                <view>预期明年额度：{{next_year_quota}}元</view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_checkbox weui-cells_after-title">
+            <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label" wx:for="{{bill_list}}" wx:key="value">
+                    <view class="weui-cell__bd">
+                        <view>{{item.name}}</view>
+                    </view>
+                    <view class="weui-cell__hd">
+                        <checkbox
+                            class="weui-check"
+                            checked="{{item.checked}}"
+                        />
+                        <i class="weui-icon-checked"></i>
+                    </view>
+                </label>
+            </checkbox-group>
+        </view>
+	</view>
+</view>
