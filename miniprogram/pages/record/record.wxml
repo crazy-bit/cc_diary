@@ -1,6 +1,7 @@
 <page-meta root-font-size="system"/>
 <view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
 	<view class="page__bd" style="height: 100%;">
+  <view class="pop_error" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
 		<view class="weui-tab">
             <view class="weui-cell weui-cell_active">
                 <view class="weui-cell__hd">
