@@ -1,50 +1,45 @@
-<!--index.wxml-->
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-  <view class="search flex-wrp">
-      <view class="search-left flex-item">
-          <image src="../../images/search.png"></image>
-          <input placeholder="搜索话题, 问题或人" placeholder-class="search-placeholder"/>
-      </view>
-      <view class="search-right flex-item" bindtap="upper">
-          <image src="../../images/lighting.png"></image>
-      </view>
-  </view>
-
-    <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-        <view class="feed-item">
-            <view class="feed-source">
-                <a class="">
-                    <view class="avatar">
-                        <image src="{{item.feed_source_img}}"></image>
-                    </view>
-                    <text>{{item.feed_source_name}}{{item.feed_source_txt}}</text>
-                </a>
-                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+<page-meta root-font-size="system"/>
+<view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
+<view aria-role="heading" aria-level="4" class="weui-article__h1">规则说明</view>
+<view class="weui-article__section">
+    <view class="weui-article__h5">规则 <text class="italic_text">(所有解释权归yoyo所有)</text></view>
+    <view class="weui-article__ul">
+        <view class="weui-article__li"><text class="red_text">初始额度{{base_quota}}万元</text></view>
+        <view class="weui-article__li">若每年额度使用完则第二年<text class="red_text">额度增加{{quota_increment}}万</text></view>
+        <view class="weui-article__li">若每年未花费完则来年<text class="red_text">生活费降低{{100-life_decrement*100}}%</text></view>
+        <view class="weui-article__li">
+            花费<text class="red_text">只可用于自己消费</text>，举例说明：
+            <view class="weui-article__ul">
+                <view class="weui-article__li">包含：自己买LV包的花费</view>
+                <view class="weui-article__li">不包含: 给小孩买衣服的花费</view>
+                <view class="weui-article__li">不包含：自己过早的花费</view>
+                <view class="weui-article__li">包含：自己参加各类课程的花费</view>
             </view>
-            <view class="feed-content">
-                <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
-                    <a class="question-link">
-                        <text>{{item.question}}</text>
-                    </a>
-                </view>
-                <view class="answer-body">
-                    <view bindtap="bindItemTap">
-                        <text class="answer-txt" aid="{{answer_id}}">{{item.answer_ctnt}}</text>
-                    </view>
-                    <view class="answer-actions" bindtap="bindItemTap">
-                        <view class="like dot">
-                            <a>{{item.good_num}} 赞同 </a>
-                        </view>
-                        <view class="comments dot">
-                            <a>{{item.comment_num}} 评论 </a>
-                        </view>
-                        <view class="follow-it">
-                            <a>关注问题</a>
-                        </view>
-                    </view>
-                </view>
-            </view>
+            <text class="italic_text">解释一：花费是否算个人享受，如过早费用金额过小，不算个人享受，属于生活开销</text>
         </view>
-    </block>
-</scroll-view>
+    </view>
+</view>
 
+<view class="weui-article__section">
+    <view class="weui-article__h5">举例 <text class="italic_text">(知道上面你看不明白，看实际例子)</text></view>
+    <view class="weui-article__ul">
+		<view class="weui-article__li">假设2023年额度{{base_quota}}万，生活费{{base_life}}万</view>
+		<view class="weui-article__li">若每年都花费完，那么：
+			<view class="weui-article__ul">
+				<view class="weui-article__li">2024年额度变为{{base_quota+quota_increment}}万，生活费{{base_life}}万</view>
+				<view class="weui-article__li">2025年额度变为{{base_quota+2*quota_increment}}万，生活费{{base_life}}万</view>
+				<view class="weui-article__li">2026年额度变为{{base_quota+3*quota_increment}}万，生活费{{base_life}}万</view>
+				<view class="weui-article__li">2027年额度变为{{base_quota+4*quota_increment}}万，生活费{{base_life}}万</view>
+			</view>
+		</view>
+		<view class="weui-article__li">若每年都未花费完，那么：
+			<view class="weui-article__ul">
+				<view class="weui-article__li">2024年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement}}</view>
+				<view class="weui-article__li">2025年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement*life_decrement}}</view>
+				<view class="weui-article__li">2026年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement*life_decrement*life_decrement}}</view>
+				<view class="weui-article__li">2027年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement*life_decrement*life_decrement*life_decrement}}</view>
+			</view>
+		</view>
+    </view>
+</view>
+</view>

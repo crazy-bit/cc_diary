@@ -44,4 +44,11 @@
   background: #F0F4F3;
   color: #000;
 }
+.red_text{
+  color: red;
+}
+.italic_text{
+    font-size: 35rpx;
+  font-style:italic;
+}
 /*feed-item part is in app.wxss for multiplexing*/
