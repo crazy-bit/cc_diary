@@ -14,6 +14,11 @@ App({
       });
     }
 
-    this.globalData = {};
+    this.globalData = {
+        today: (new Date()).toLocaleString(),
+        year: (new Date().getFullYear()),
+        base_quota: 10, // 初始额度
+        quota_increment: 1,   // 逐年涨幅
+    };
   }
 });
