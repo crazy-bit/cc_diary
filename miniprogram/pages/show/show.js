@@ -1,10 +1,9 @@
 const { envList } = require('../../envList.js');
+var app = getApp()
 
 Page({
     mixins: [require('../../mixin/common')],
     data: {
-        today: (new Date()).toLocaleString(),
-        year: (new Date().getFullYear()),
         bill_list: [
         ],
         cur_quota: 0,
@@ -23,7 +22,7 @@ Page({
           },
           data: {
             type: 'selectRecord',
-            year: this.data.year,
+            year: app.globalData.year,
           }
         }).then((resp) => {
             // 解析bills
@@ -40,9 +39,9 @@ Page({
 
             // 解析额度
             var quota = resp.result.data[0].quota;
-            this.setData({cur_quota:quota.cur_year});
-            this.setData({next_year_quota:quota.expect_next_year});
-            this.setData({left_quota:quota.cur_year-total_spend});
+            this.setData({cur_quota:quota.cur_year * 10000});
+            this.setData({next_year_quota:quota.expect_next_year * 10000});
+            this.setData({left_quota:quota.cur_year * 10000 - total_spend});
         }).catch((e) => {
           console.log(e);
         });

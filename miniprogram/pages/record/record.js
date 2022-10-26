@@ -6,57 +6,17 @@ Page({
     data: {
         today: (new Date()).toLocaleDateString(),
         year: (new Date().getFullYear()),
-        init_year: 2022,
         spend: "",
         purpose: "",
         envList,
         selectedEnv: envList[0],
         haveCreateCollection: false,
-        popErrorMsg:""
+        haveInitCollection: false,
     },
 
     // 初次加载
     onLoad: function() {
-        if (!this.data.haveCreateCollection) {
-            this.CreateDataBase();
-        }
-        var result = this.LoadQuotaFromDataBase(this.data.year);
-        if (result[0] == false) {
-            if (this.data.init_year == this.data.year) {
-                // 创建初始额度
-                var init_data = { 
-                    'cur_quota':app.globalData.base_quota, 
-                    'expect_next_quota':app.globalData.base_quota + app.globalData.quota_increment
-                }
-                this.InitDataToDataBase(init_data)
-            } else if (this.data.init_year < this.data.year) {
-                // 拉取上一年
-                var last_result = this.LoadQuotaFromDataBase(this.data.year - 1);
-                if (last_result[0] == false) {
-                    // 创建初始额度
-                    var init_data = { 
-                        'cur_quota':app.globalData.base_quota, 
-                        'expect_next_quota':app.globalData.base_quota + app.globalData.quota_increment
-                    }
-                    this.InitDataToDataBase(init_data)
-                } else {
-                    // 创建额度
-                    var quota = last_result[1].data.quota;
-                    var init_data = { 
-                        'cur_quota': quota.cur_quota + app.globalData.quota_increment, 
-                        'expect_next_quota': quota.cur_quota +  2 * app.globalData.quota_increment
-                    }
-                    this.InitDataToDataBase(init_data)
-                }
-            } else {
-                // 创建空额度
-                var init_data = { 
-                    'cur_quota': 0, 
-                    'expect_next_quota': 0
-                }
-                this.InitDataToDataBase(init_data)
-            }
-        }
+        this.InitPageData()
     },
 
     // 获取input的值
@@ -132,37 +92,30 @@ Page({
     },
 
     // 加载数据
-    LoadQuotaFromDataBase(year) {
+    async LoadQuotaFromDataBase(year) {
         var result = [ false, null];
         console.log("load db data");
-        wx.cloud.callFunction({
-          name: 'quickstartFunctions',
-          config: {
-            env: this.data.selectedEnv.envId
-          },
-          data: {
-            type: 'selectRecord',
-            year: year,
-          }
-        }).then((resp) => {
-            console.log("resp: ", resp);
-            if (resp.result.data.length == 0) {
-                result[0] = false;
-            } else {
-                result[0] = true;
-                result[1] = resp.result.data[0].quota;
+        var resp = await wx.cloud.callFunction({
+            name: 'quickstartFunctions',
+            config: {
+                env: this.data.selectedEnv.envId
+            },
+            data: {
+                type: 'selectRecord',
+                year: year,
             }
-            console.log("get result: ", result)
-            return result
-        }).catch((e) => {
-          console.log(e);
-          console.log("get result except: ", result)
-          return result
         });
+        if (resp.result.data.length == 0) {
+            result[0] = false;
+        } else {
+            result[0] = true;
+            result[1] = resp.result.data[0].quota;
+        }
+        return result
     },
 
     InitDataToDataBase(d) {
-        console.log("init data")
+        console.log("init data:", d)
         wx.cloud.callFunction({
           name: 'quickstartFunctions',
           config: {
@@ -176,21 +129,32 @@ Page({
             next_quota: d.expect_next_quota
           }
         }).then((resp) => {
-
+            if (resp.result.success) {
+                this.setData({
+                  haveInitCollection: true
+                });
+              }
         }).catch((e) => {
           console.log(e);
         });
-        console.log("init data done")
     },
 
     OnSubmit(e) {
+        if (!this.data.haveInitCollection) {
+            wx.showToast({
+                title:"'系统繁忙",
+                icon:'error',
+                duration:1000
+              })
+              return;
+        }
       // 校验输入spend
       console.log("input", this.data.spend)
       if (isNaN(Number(this.data.spend)) || Number(this.data.spend) <=0 || Number(this.data.spend) >= 100000) {
         wx.showToast({
           title:"'金额'输入不合法",
           icon:'error',
-          duration:1500
+          duration:1000
         })
         return;
       }
@@ -201,7 +165,7 @@ Page({
         wx.showToast({
           title:"'用途'输入不合法",
           icon:'error',
-          duration:1500
+          duration:1000
         })
         return;
       }
@@ -210,6 +174,57 @@ Page({
         this.CreateDataBase();
       }
       this.InsertToDataBase(this.data)
+    },
+
+    // 初始化
+    async InitPageData() {
+        if (!this.data.haveCreateCollection) {
+            await this.CreateDataBase();
+        }
+
+        var result = await this.LoadQuotaFromDataBase(app.globalData.year);
+        console.log("load quota res: ", result)
+
+        if (result[0] == false) {
+            if (app.globalData.init_year == app.globalData.year) {
+                // 创建初始额度
+                var init_data = { 
+                    'cur_quota':app.globalData.base_quota, 
+                    'expect_next_quota':app.globalData.base_quota + app.globalData.quota_increment
+                }
+                this.InitDataToDataBase(init_data)
+            } else if (app.globalData.init_year < app.globalData.year) {
+                // 拉取上一年
+                var last_result = this.LoadQuotaFromDataBase(app.globalData.year - 1);
+                if (last_result[0] == false) {
+                    // 创建初始额度
+                    var init_data = { 
+                        'cur_quota':app.globalData.base_quota, 
+                        'expect_next_quota':app.globalData.base_quota + app.globalData.quota_increment
+                    }
+                    this.InitDataToDataBase(init_data)
+                } else {
+                    // 创建额度
+                    var quota = last_result[1].data.quota;
+                    var init_data = { 
+                        'cur_quota': quota.cur_quota + app.globalData.quota_increment, 
+                        'expect_next_quota': quota.cur_quota +  2 * app.globalData.quota_increment
+                    }
+                    this.InitDataToDataBase(init_data)
+                }
+            } else {
+                // 创建空额度
+                var init_data = { 
+                    'cur_quota': 0, 
+                    'expect_next_quota': 0
+                }
+                this.InitDataToDataBase(init_data)
+            }
+        } else {
+            this.setData({
+                haveInitCollection: true
+            });
+        }
     }
   });
   
