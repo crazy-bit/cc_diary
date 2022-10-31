@@ -32,7 +32,7 @@ Page({
             for (var i = 0; i < bills.length; i++) {
                 var d = new Date(bills[i].date);
                 var name = d.getMonth()+1 + "-" + d.getDate() + " | " + bills[i].spend + "元 | " + bills[i].purpose;
-                new_bills.push({'name':name, 'checked':bills[i].claimed});
+                new_bills.push({'name':name, 'claimed':bills[i].claimed, 'value':i});
                 total_spend += bills[i].spend;
             }
             this.setData({bill_list:new_bills});
