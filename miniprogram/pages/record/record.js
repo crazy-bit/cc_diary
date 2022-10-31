@@ -34,7 +34,7 @@ Page({
     CreateDataBase() {
       console.log("create")
       wx.showLoading({
-        title: '正在提交...',
+        title: '正在初始化...',
       });
       wx.cloud.callFunction({
         name: 'quickstartFunctions',
@@ -81,12 +81,26 @@ Page({
           }
         }).then((resp) => {
           wx.hideLoading();
+          wx.showToast({
+            title:"'提交成功",
+            icon:'success',
+            duration:1500
+          })
+          this.setData({
+            spend: "",
+            purpose: ""
+          });
         }).catch((e) => {
           console.log(e);
           this.setData({
             showUploadTip: true
           });
           wx.hideLoading();
+          wx.showToast({
+            title:"'系统异常",
+            icon:'error',
+            duration:2000
+          })
         });
         console.log("insert done")
     },

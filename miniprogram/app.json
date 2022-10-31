@@ -19,19 +19,19 @@
         "list": [
             {
                 "pagePath": "pages/record/record",
-                "text": "",
+                "text": "录入",
                 "iconPath": "images/index.png",
                 "selectedIconPath": "images/index_focus.png"
             },
             {
                 "pagePath": "pages/show/show",
-                "text": "",
+                "text": "查看",
                 "iconPath": "images/discovery.png",
                 "selectedIconPath": "images/discovery_focus.png"
             },
             {
                 "pagePath": "pages/rules/rules",
-                "text": "",
+                "text": "说明",
                 "iconPath": "images/ring.png",
                 "selectedIconPath": "images/ring_focus.png"
             }
