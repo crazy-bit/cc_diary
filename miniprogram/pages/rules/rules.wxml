@@ -2,7 +2,7 @@
 <view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
 <view aria-role="heading" aria-level="4" class="weui-article__h1">规则说明</view>
 <view class="weui-article__section">
-    <view class="weui-article__h5">规则 <text class="italic_text">(所有解释权归yoyo所有)</text></view>
+    <view class="weui-article__h4">规则 <text class="italic_text">(所有解释权归yoyo所有)</text></view>
     <view class="weui-article__ul">
         <view class="weui-article__li"><text class="red_text">初始额度{{base_quota}}万元</text></view>
         <view class="weui-article__li">若每年额度使用完则第二年<text class="red_text">额度增加{{quota_increment}}万</text></view>
@@ -26,18 +26,18 @@
 		<view class="weui-article__li">假设2023年额度{{base_quota}}万，生活费{{base_life}}万</view>
 		<view class="weui-article__li">若每年都花费完，那么：
 			<view class="weui-article__ul">
-				<view class="weui-article__li">2024年额度变为{{base_quota+quota_increment}}万，生活费{{base_life}}万</view>
-				<view class="weui-article__li">2025年额度变为{{base_quota+2*quota_increment}}万，生活费{{base_life}}万</view>
-				<view class="weui-article__li">2026年额度变为{{base_quota+3*quota_increment}}万，生活费{{base_life}}万</view>
-				<view class="weui-article__li">2027年额度变为{{base_quota+4*quota_increment}}万，生活费{{base_life}}万</view>
+				<view class="weui-article__li">2024年额度<text class="red_text">升为{{base_quota+quota_increment}}万</text>，生活费保持{{base_life}}万</view>
+				<view class="weui-article__li">2025年额度<text class="red_text">升为{{base_quota+2*quota_increment}}万</text>，生活费保持{{base_life}}万</view>
+				<view class="weui-article__li">2026年额度<text class="red_text">升为{{base_quota+3*quota_increment}}万</text>，生活费保持{{base_life}}万</view>
+				<view class="weui-article__li">2027年额度<text class="red_text">升为{{base_quota+4*quota_increment}}万</text>，生活费保持{{base_life}}万</view>
 			</view>
 		</view>
 		<view class="weui-article__li">若每年都未花费完，那么：
 			<view class="weui-article__ul">
-				<view class="weui-article__li">2024年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement}}</view>
-				<view class="weui-article__li">2025年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement*life_decrement}}</view>
-				<view class="weui-article__li">2026年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement*life_decrement*life_decrement}}</view>
-				<view class="weui-article__li">2027年额度变为{{base_quota}}万，生活费{{base_life*10000*life_decrement*life_decrement*life_decrement*life_decrement}}</view>
+				<view class="weui-article__li">2024年额度保持{{base_quota}}万，生活费<text class="red_text">降为{{base_life*10000*life_decrement}}</text></view>
+				<view class="weui-article__li">2025年额度保持{{base_quota}}万，生活费<text class="red_text">降为{{base_life*10000*life_decrement*life_decrement}}</text></view>
+				<view class="weui-article__li">2026年额度保持{{base_quota}}万，生活费<text class="red_text">降为{{base_life*10000*life_decrement*life_decrement*life_decrement}}</text></view>
+				<view class="weui-article__li">2027年额度保持{{base_quota}}万，生活费<text class="red_text">降为{{base_life*10000*life_decrement*life_decrement*life_decrement*life_decrement}}</text></view>
 			</view>
 		</view>
     </view>

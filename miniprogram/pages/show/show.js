@@ -31,7 +31,7 @@ Page({
             var bills = resp.result.data[0].bills;
             for (var i = 0; i < bills.length; i++) {
                 var d = new Date(bills[i].date);
-                var name = d.getMonth()+1 + "-" + d.getDate() + " | " + bills[i].spend + "元 | " + bills[i].purpose;
+                var name = d.getMonth()+1 + "-" + d.getDate() + "消费" + bills[i].spend + "，用于" + bills[i].purpose;
                 new_bills.push({'name':name, 'claimed':bills[i].claimed, 'value':i});
                 total_spend += bills[i].spend;
             }

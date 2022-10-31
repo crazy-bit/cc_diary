@@ -12,6 +12,15 @@ Page({
         selectedEnv: envList[0],
         haveCreateCollection: false,
         haveInitCollection: false,
+        haveSubmitted : false,
+        topTipsFirst: "亲爱的，衣服不贵，你最贵，赶紧来一单吧",
+        topTipsLater: "",
+        topTips: [
+            "恭喜今天又向小目标前进了一步",
+            "谢谢你为我做的每一顿饭",
+            "不负遇见，一路有你真好",
+            "不能一味追求物质，不妨也减减肚子",
+        ],
     },
 
     // 初次加载
@@ -30,7 +39,11 @@ Page({
         purpose: e.detail.value
       })
     },
-    
+    // 随机获取一条展示
+    getTip(tips) {
+        return tips[Math.floor((Math.random()*tips.length))];
+    },
+
     CreateDataBase() {
       console.log("create")
       wx.showLoading({
@@ -89,6 +102,10 @@ Page({
           this.setData({
             spend: "",
             purpose: ""
+          });
+          this.setData({
+            haveSubmitted : true,
+            topTipsLater: this.getTip(this.data.topTips)
           });
         }).catch((e) => {
           console.log(e);
