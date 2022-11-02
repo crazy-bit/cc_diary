@@ -15,7 +15,7 @@ App({
     }
 
     this.globalData = {
-        init_year: 2022,    // 初始年份
+        init_year: 2023,    // 初始年份
         today: (new Date()).toLocaleString(),
         year: (new Date().getFullYear()),
         base_quota: 10, // 初始额度
