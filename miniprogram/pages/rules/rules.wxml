@@ -5,8 +5,8 @@
     <view class="weui-article__h4">规则 <text class="italic_text">(所有解释权归yoyo所有)</text></view>
     <view class="weui-article__ul">
         <view class="weui-article__li"><text class="red_text">初始额度{{base_quota}}万元</text></view>
-        <view class="weui-article__li">若每年额度使用完则第二年<text class="red_text">额度增加{{quota_increment}}万</text></view>
-        <view class="weui-article__li">若每年未花费完则来年<text class="red_text">生活费降低{{100-life_decrement*100}}%</text></view>
+        <view class="weui-article__li">若每年额度使用完，则第二年<text class="red_text">额度增加{{quota_increment}}万</text></view>
+        <view class="weui-article__li">若每年未花费完，则来年<text class="red_text">生活费降低{{100-life_decrement*100}}%</text></view>
         <view class="weui-article__li">
             花费<text class="red_text">只可用于自己消费</text>，举例说明：
             <view class="weui-article__ul">
@@ -15,7 +15,7 @@
                 <view class="weui-article__li">不包含：自己过早的花费</view>
                 <view class="weui-article__li">包含：自己参加各类课程的花费</view>
             </view>
-            <text class="italic_text">解释一：花费是否算个人享受，如过早费用金额过小，不算个人享受，属于生活开销</text>
+            <text class="italic_text">解释一：过早费用金额过小，不算个人享受，属于生活开销</text>
         </view>
     </view>
 </view>

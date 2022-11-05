@@ -6,6 +6,7 @@ Page({
     data: {
         bill_list: [
         ],
+        year: app.globalData.year,
         cur_quota: 0,
         left_quota: 0,
         next_year_quota: 0,
